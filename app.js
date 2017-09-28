@@ -35,7 +35,7 @@
 
              } else {
 
-                 console.log(JSON.stringify(result, undefined, 2));
+                 console.log(`it is now ${result.temperature} and it feels like ${result.apparentTemperature}`);
              }
 
 

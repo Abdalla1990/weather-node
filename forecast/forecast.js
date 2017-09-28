@@ -14,8 +14,8 @@ var sendForcast = (latitude, gratitude, callback) => {
         } else {
             callback(undefined, {
 
-                tempreture: body.currently.temperature
-
+                temperature: body.currently.temperature,
+                apparentTemperature: body.currently.apparentTemperature
             })
 
         }
