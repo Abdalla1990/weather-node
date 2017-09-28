@@ -24,7 +24,11 @@
          console.log(errorMessage);
      } else {
          console.log('getting the lat and grat and sending it to the forcasting ...')
-         console.log(JSON.stringify(results, undefined, 2));
+
+         console.log(`================================`);
+         console.log(`address   :  ${results.address}`);
+         console.log(`latitude  :  ${results.latitude}`);
+         console.log(`gratitude :  ${results.gratitude}`);
 
 
 
@@ -36,6 +40,7 @@
              } else {
 
                  console.log(`it is now ${result.temperature} and it feels like ${result.apparentTemperature}`);
+                 console.log(`================================`);
              }
 
 

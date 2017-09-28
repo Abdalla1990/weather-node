@@ -9,9 +9,9 @@ var sendForcast = (latitude, gratitude, callback) => {
 
         if (error) {
             callback('cannot connect to forecast servers ')
-        } else if (body.error == 'The given location is invalid.') {
+        } else if (Response.statusCode === 400) {
             callback('invalid address ! ')
-        } else {
+        } else if (Response.statusCode === 200) {
             callback(undefined, {
 
                 temperature: body.currently.temperature,
