@@ -1,6 +1,6 @@
  const yargs = require('yargs');
  const geocode = require('./geocode/geocode.js');
- const forcast = require('./forcast/forcast.js')
+ const forcast = require('./forecast/forecast.js')
  const argv = yargs.
  options({
          a: { // the fied a 

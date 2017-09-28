@@ -8,7 +8,7 @@ var sendForcast = (latitude, gratitude, callback) => {
     }, (error, Response, body) => {
 
         if (error) {
-            callback('cannot connect to forcast servers ')
+            callback('cannot connect to forecast servers ')
         } else if (body.error == 'The given location is invalid.') {
             callback('invalid address ! ')
         } else {
