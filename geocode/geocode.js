@@ -3,7 +3,7 @@ var getaddress = (address, callback) => {
     var encoded = decodeURIComponent(address);
     request({ // method that handel http requests to APIs 
 
-        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}`, // getting the encoded address 
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encoded}`, // getting the encoded address 
         json: true
     }, (error, Response, body) => {
 
