@@ -3,10 +3,11 @@ const axios = require('axios');
 const argv = yargs.
 options({
         a: { // the fied a 
-            demand: true, // required field 
+            demand: false, // required field 
             describe: 'enter your address ', // will be displayed in the help command 
             alias: 'address', // alies of a 
-            string: true // will transfer the inserted text into string data type 
+            string: true, // will transfer the inserted text into string data type
+            default: 'montreal'
         }
     }).help() // needed to provide guidance 
     .alias('help', 'h') // alies for help 
@@ -15,6 +16,8 @@ options({
 
 var encodedAddress = encodeURIComponent(argv.address);
 var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
+
+
 
 axios.get(url).then((response) => {
 
