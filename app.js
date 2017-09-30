@@ -13,41 +13,20 @@
      .alias('help', 'h') // alies for help 
      .argv;
 
- //console.log(argv);
+ geocode.getaddress(argv.address).then((results) => {
+     console.log('getting the lat and grat and sending it to the forcasting ...')
 
+     console.log(`================================`);
+     console.log(`address   :  ${results.address}`);
+     console.log(`latitude  :  ${results.latitude}`);
+     console.log(`gratitude :  ${results.gratitude}`);
 
- //console.log(encoded);
- geocode.getaddress(argv.address, (errorMessage, results) => {
+     forcast.sendForcast(results.latitude, results.gratitude).then((result) => {
 
-     if (errorMessage) {
-
-         console.log(errorMessage);
-     } else {
-         console.log('getting the lat and grat and sending it to the forcasting ...')
-
+         console.log(`it is now ${result.temperature} and it feels like ${result.apparentTemperature}`);
          console.log(`================================`);
-         console.log(`address   :  ${results.address}`);
-         console.log(`latitude  :  ${results.latitude}`);
-         console.log(`gratitude :  ${results.gratitude}`);
 
-
-
-         forcast.sendForcast(results.latitude, results.latitude, (error, result) => {
-
-             if (error) {
-                 console.log(error);
-
-             } else {
-
-                 console.log(`it is now ${result.temperature} and it feels like ${result.apparentTemperature}`);
-                 console.log(`================================`);
-             }
-
-
-         })
-
-     }
-
+     }, (errorMessage) => {
+         console.log(errorMessage);
+     });
  });
-
- //90ed774613b6cd56ad3b3078a7350af6

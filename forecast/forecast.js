@@ -1,29 +1,36 @@
 const request = require('request');
-var sendForcast = (latitude, gratitude, callback) => {
 
-    request({ // method that handel http requests to APIs 
+var sendForcast = (latitude, gratitude) => {
 
-        url: `https://api.darksky.net/forecast/90ed774613b6cd56ad3b3078a7350af6/${latitude},${gratitude}`, // getting the encoded address 
-        json: true
-    }, (error, Response, body) => {
 
-        if (error) {
-            callback('cannot connect to forecast servers ')
-        } else if (Response.statusCode === 400) {
-            callback('invalid address ! ')
-        } else if (Response.statusCode === 200) {
-            callback(undefined, {
+    return new Promise((resolve, reject) => {
 
-                temperature: body.currently.temperature,
-                apparentTemperature: body.currently.apparentTemperature
-            })
+        request({
+            url: `https://api.darksky.net/forecast/90ed774613b6cd56ad3b3078a7350af6/${latitude},${gratitude}`, // getting the encoded address 
+            json: true
 
-        }
+        }, (error, response, body) => {
+            if (error) {
+                reject('cannot connect to forecast servers ')
+            } else if (response.statusCode === 400) {
+                reject('invalid address ! ')
+            } else if (response.statusCode === 200) {
+                resolve({
+
+                    temperature: body.currently.temperature,
+                    apparentTemperature: body.currently.apparentTemperature
+                });
+            }
+
+
+        })
+
+
     })
 
+};
 
 
-}
 
 module.exports = {
 
